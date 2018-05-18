@@ -2,7 +2,7 @@
 
 import socket
 
-rec_ip = "192.168.43.8"
+rec_ip = "127.0.0.1"
 myport = 9999
 
 
@@ -13,4 +13,9 @@ s.bind((rec_ip,myport))
  
 #is deciding howmuch charecter receiver can receive maximumly  (buffer size)
 while 1:
-	s.recvfrom(1000)   #if 
+	data = s.recvfrom(1000)	#dtat is type of tuple it has (msg,(ip,portNo))  here data[0] is msg  data[1] is (ip,portNo)
+	print "msg from client :  "+str(data[0])
+	rply = raw_input("Pleae Enter reply : ")
+	s.sendto(rply,data[1])
+		
+	  
