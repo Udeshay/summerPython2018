@@ -41,17 +41,26 @@ def get_whois_data(domain):
 		if (ext[-1] == 'com' or ext[-1] == 'org' or ext[-1] == 'net'):
 			whois = 'whois.internic.net'
 			domain_info = perform_whois(whois,domain)
+	
+		elif ext[-1] == 'edu':
+			whois = 'whois.educause.net'
+			domain_info = perform_whois(whois,domain)
 
 		else :
 			ext = domain.split('.')[-1]  #will give word after .
 			
 			if ext == 'in':
 				#this server will tell about indian country domain		
-				whois = 'whois.inregistry.net'  #'whois.iana.org'   
+				whois = 'whois.inregistry.net'   
 				domain_info = perform_whois(whois , domain)
 			else :
 				# will tell about any country domain
 				whois = 'whois.iana.org'   
+				domain_info = perform_whois(whois , domain)
+	else :
+		if ext == 'in':
+				#this server will tell about indian country domain		
+				whois = 'whois.inregistry.net'  
 				domain_info = perform_whois(whois , domain)
 
 	#returning the reply
